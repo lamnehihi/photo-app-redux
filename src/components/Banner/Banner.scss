@@ -1,0 +1,17 @@
+.banner {
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: center;
+  align-items: center;
+  height: 15rem;
+
+  background-image: url(../../assets/images/blue-bg.jpg);
+  background-position: center;
+  background-size: cover;
+
+  &__title {
+    color: rgba($color: #ffffff, $alpha: 1);
+    font-weight: bold;
+    text-shadow: 0px 0px 15px #000;
+  }
+}

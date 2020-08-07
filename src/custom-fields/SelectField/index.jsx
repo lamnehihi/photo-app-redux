@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FormGroup, Label, Input } from "reactstrap";
+import { FormGroup, Label, Input, FormFeedback } from "reactstrap";
 import Select from "react-select";
 import { PHOTO_CATEGORY_OPTIONS } from "Constants/global";
+import { ErrorMessage } from "formik";
 
 SelectField.propTypes = {
   field: PropTypes.object.isRequired,
@@ -24,6 +25,9 @@ SelectField.defaultProps = {
 function SelectField(props) {
   const { form, field, options, label, placeholder, disable } = props;
   const { name, value } = field;
+  const { errors, touched } = form;
+  const showError = errors[name] && touched[name];
+
   const selectedOption = options.find(option => option.value === value);
 
   const handleSelectedOptionChange = (selectedOption) => {
@@ -51,7 +55,11 @@ function SelectField(props) {
         placeholder={placeholder}
         disable={disable}
         options={options}
+
+        className={showError ? 'is-invalid' : ''}
       ></Select>
+
+      <ErrorMessage name={name} component={FormFeedback} />
     </FormGroup>
   );
 }

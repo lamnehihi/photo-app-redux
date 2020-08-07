@@ -7,6 +7,8 @@ import images from "Constants/image";
 import { Formik, Form, FastField } from "formik";
 import InputField from "custom-fields/InputField";
 import SelectField from "custom-fields/SelectField";
+import RandomPhotoField from "custom-fields/RandomPhotoField";
+import * as Yup from 'yup';
 
 PhotoForm.propTypes = {
   onSubmit: PropTypes.func,
@@ -20,10 +22,23 @@ function PhotoForm(props) {
   const initialValues = {
     title: "",
     categoryId: null,
+    photo: "",
   };
 
+  const validationSchema = Yup.object().shape({
+
+    categoryId: Yup.number().required("This field is required!").nullable(),
+
+    photo: Yup.string().required("This field is required!"),
+
+    title: Yup.string().required("This field is required!"),
+  });
+
   return (
-    <Formik initialValues={initialValues}>
+    <Formik 
+      onSubmit = { values => console.log('submit: ', values) }
+      validationSchema={validationSchema}
+      initialValues={initialValues}>
       {(formikProps) => {
         //do something here...
         const { values, errors, touched } = formikProps;
@@ -46,25 +61,14 @@ function PhotoForm(props) {
               options={PHOTO_CATEGORY_OPTIONS}
             />
 
-            <FormGroup>
-              <Label for="categoryId">Photo</Label>
-              <div>
-                <Button type="button" outline color="primary">
-                  Random a photo
-                </Button>
-              </div>
-              <div>
-                <img
-                  alt="img"
-                  src={images.COLORFUL_BG}
-                  width="200px"
-                  height="200px"
-                ></img>
-              </div>
-            </FormGroup>
+            <FastField 
+              name="photo"
+              label="Photo"
+              component={RandomPhotoField}
+            />
 
             <FormGroup>
-              <Button type="button" color="primary">
+              <Button type="submit" color="primary">
                 Add to album
               </Button>
             </FormGroup>

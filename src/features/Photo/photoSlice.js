@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialPhotos = [
+const initialPhotos = (JSON.parse(localStorage.getItem('photos'))).photo || [
   {
     id: 91176,
     categoryId: 5,
@@ -78,6 +78,8 @@ const initialPhotos = [
 const randomId = () => {
   return Math.trunc(Math.random() * 20000000);
 }
+
+console.log('Photos is : ' , initialPhotos);
 
 const photo = createSlice({
   name: "photo",

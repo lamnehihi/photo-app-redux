@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import './Header.scss';
@@ -17,6 +16,7 @@ function Header(props) {
               className="header__link header__title"
               href="https://www.facebook.com/profile.php?id=100010291146187"
               target="_blank"
+              rel="noopener noreferrer"
             >
             Photo Base
             </a>

@@ -1,32 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FormGroup, Label, Input, Button } from "reactstrap";
-import Select from "react-select";
+import { FormGroup, Button, Spinner } from "reactstrap";
 import { PHOTO_CATEGORY_OPTIONS } from "Constants/global";
-import images from "Constants/image";
 import { Formik, Form, FastField } from "formik";
 import InputField from "custom-fields/InputField";
 import SelectField from "custom-fields/SelectField";
 import RandomPhotoField from "custom-fields/RandomPhotoField";
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 PhotoForm.propTypes = {
   onSubmit: PropTypes.func,
+  initialValues: PropTypes.object,
 };
 
 PhotoForm.defaultProps = {
   onSubmit: null,
+  initialValues: {},
 };
 
 function PhotoForm(props) {
-  const initialValues = {
-    title: "",
-    categoryId: null,
-    photo: "",
-  };
+  const { onSubmit, initialValues, isAddMode } = props;
 
   const validationSchema = Yup.object().shape({
-
     categoryId: Yup.number().required("This field is required!").nullable(),
 
     photo: Yup.string().required("This field is required!"),
@@ -34,14 +29,21 @@ function PhotoForm(props) {
     title: Yup.string().required("This field is required!"),
   });
 
+  const handleOnSubmit = (values) => {
+    if (onSubmit) {
+      onSubmit(values);
+    }
+    return;
+  };
   return (
-    <Formik 
-      onSubmit = { values => console.log('submit: ', values) }
+    <Formik
+      onSubmit={handleOnSubmit}
       validationSchema={validationSchema}
-      initialValues={initialValues}>
+      initialValues={initialValues}
+    >
       {(formikProps) => {
         //do something here...
-        const { values, errors, touched } = formikProps;
+        const { values, errors, touched, isSubmitting } = formikProps;
         console.log({ values, errors, touched });
 
         return (
@@ -61,16 +63,29 @@ function PhotoForm(props) {
               options={PHOTO_CATEGORY_OPTIONS}
             />
 
-            <FastField 
+            <FastField
               name="photo"
               label="Photo"
               component={RandomPhotoField}
             />
 
             <FormGroup>
-              <Button type="submit" color="primary">
-                Add to album
-              </Button>
+              {isAddMode ? (
+                <div>
+                <Button type="submit" color="primary">
+                  Add to album
+                </Button>
+                {isSubmitting && <Spinner size="sm" color="primary" />}
+                </div>
+              ) : (
+                <div>
+                <Button type="submit" color="success">
+                  Edit to album
+                </Button>
+                {isSubmitting && <Spinner size="sm" color="success" />}
+                </div>
+              )}
+
             </FormGroup>
           </Form>
         );

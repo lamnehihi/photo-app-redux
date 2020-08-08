@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { FormGroup, Label, Input, FormFeedback } from "reactstrap";
+import { FormGroup, Label, FormFeedback } from "reactstrap";
 import Select from "react-select";
-import { PHOTO_CATEGORY_OPTIONS } from "Constants/global";
 import { ErrorMessage } from "formik";
 
 SelectField.propTypes = {

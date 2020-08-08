@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useRouteMatch, Switch, Route } from 'react-router-dom';
 import NotFound from 'components/NotFound';
 import MainPage from './pages/Main';

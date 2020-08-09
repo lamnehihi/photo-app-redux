@@ -11,7 +11,7 @@ const store = configureStore({
 
 store.subscribe(() => {
   console.log("update state", store.getState());
-  localStorage.setItem('photos', JSON.stringify(store.getState()));
+  localStorage.setItem('photos', JSON.stringify(store.getState().photo));
 })
 
 export default store;

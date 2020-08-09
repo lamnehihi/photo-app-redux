@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialPhotos = (JSON.parse(localStorage.getItem('photos'))).photo || [
+const photos = JSON.parse(localStorage.getItem('photos'));
+
+const initialPhotos = photos || [
   {
     id: 91176,
     categoryId: 5,

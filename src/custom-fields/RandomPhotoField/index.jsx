@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { FormGroup, Label, FormFeedback } from 'reactstrap';
-import RandomPhoto from 'components/RandomPhoto';
-import { ErrorMessage } from 'formik';
+import React from "react";
+import PropTypes from "prop-types";
+import { FormGroup, Label, FormFeedback } from "reactstrap";
+import RandomPhoto from "components/RandomPhoto";
+import { ErrorMessage } from "formik";
 
 RandomPhotoField.propTypes = {
   form: PropTypes.object.isRequired,
@@ -12,8 +12,8 @@ RandomPhotoField.propTypes = {
 };
 
 RandomPhotoField.defaultProps = {
-  label: '',
-}
+  label: "",
+};
 
 function RandomPhotoField(props) {
   const { form, field, label } = props;
@@ -23,16 +23,16 @@ function RandomPhotoField(props) {
 
   const handleImageUrlChange = (newImageUrl) => {
     form.setFieldValue(name, newImageUrl);
-  }
+  };
 
   return (
     <FormGroup>
-      { label && <Label for={name}>{label}</Label> }
+      {label && <Label for={name}>{label}</Label>}
 
       {/* cheat show error validation */}
-      <div className={showError ? 'is-invalid' : ''}></div>
+      <div className={showError ? "is-invalid" : ""}></div>
       <ErrorMessage name={name} component={FormFeedback} />
-      
+
       <RandomPhoto
         name={name}
         imageUrl={value}

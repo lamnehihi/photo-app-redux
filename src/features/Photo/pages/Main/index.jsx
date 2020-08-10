@@ -5,8 +5,7 @@ import Banner from "components/Banner";
 import images from "Constants/image";
 import { useSelector, useDispatch } from "react-redux";
 import PhotoList from "features/Photo/components/PhotoList";
-import { removePhoto } from 'features/Photo/photoSlice';
-
+import { removePhoto } from "features/Photo/photoSlice";
 
 MainPage.propTypes = {};
 
@@ -17,10 +16,9 @@ function MainPage(props) {
   const dispatch = useDispatch();
   const history = useHistory();
 
-
   const handleOnPhotoEditClick = (photo) => {
     console.log("Edit:", photo);
-    const editPhotoUrl = `/photos/${photo.id}`
+    const editPhotoUrl = `/photos/${photo.id}`;
     history.push(editPhotoUrl);
   };
 

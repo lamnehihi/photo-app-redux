@@ -27,17 +27,19 @@ function SelectField(props) {
   const { errors, touched } = form;
   const showError = errors[name] && touched[name];
 
-  const selectedOption = options.find(option => option.value === value);
+  const selectedOption = options.find((option) => option.value === value);
 
   const handleSelectedOptionChange = (selectedOption) => {
-    const selectedValue = selectedOption ? selectedOption.value : selectedOption;
+    const selectedValue = selectedOption
+      ? selectedOption.value
+      : selectedOption;
 
     const changeEvent = {
-      target : {
-        name : name,
-        value: selectedValue
-      }
-    }
+      target: {
+        name: name,
+        value: selectedValue,
+      },
+    };
 
     field.onChange(changeEvent);
   };
@@ -50,12 +52,10 @@ function SelectField(props) {
         {...field}
         onChange={handleSelectedOptionChange}
         value={selectedOption}
-
         placeholder={placeholder}
         disable={disable}
         options={options}
-
-        className={showError ? 'is-invalid' : ''}
+        className={showError ? "is-invalid" : ""}
       ></Select>
 
       <ErrorMessage name={name} component={FormFeedback} />

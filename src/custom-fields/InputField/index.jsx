@@ -21,24 +21,19 @@ InputField.defaultProps = {
 };
 
 function InputField(props) {
-  const { 
-    field, form,
-    type, label, placeholder, disable
-  } = props;
+  const { field, form, type, label, placeholder, disable } = props;
   const { name } = field;
   const { errors, touched } = form;
   const showError = errors[name] && touched[name];
   return (
     <FormGroup>
       <Label for={name}>{label}</Label>
-      <Input 
-        id={name} 
-        {...field} 
-
+      <Input
+        id={name}
+        {...field}
         type={type}
         disabled={disable}
         placeholder={placeholder}
-
         invalid={showError}
       ></Input>
 

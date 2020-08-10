@@ -72,20 +72,19 @@ function PhotoForm(props) {
             <FormGroup>
               {isAddMode ? (
                 <div>
-                <Button type="submit" color="primary">
-                  Add to album
-                </Button>
-                {isSubmitting && <Spinner size="sm" color="primary" />}
+                  <Button type="submit" color="primary">
+                    Add to album
+                  </Button>
+                  {isSubmitting && <Spinner size="sm" color="primary" />}
                 </div>
               ) : (
                 <div>
-                <Button type="submit" color="success">
-                  Edit to album
-                </Button>
-                {isSubmitting && <Spinner size="sm" color="success" />}
+                  <Button type="submit" color="success">
+                    Edit to album
+                  </Button>
+                  {isSubmitting && <Spinner size="sm" color="success" />}
                 </div>
               )}
-
             </FormGroup>
           </Form>
         );

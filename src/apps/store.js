@@ -2,16 +2,16 @@ import photoReducer from "features/Photo/photoSlice";
 import { configureStore } from "@reduxjs/toolkit";
 
 const rootReducer = {
-  photo: photoReducer
-}
+  photo: photoReducer,
+};
 
 const store = configureStore({
-  reducer : rootReducer
+  reducer: rootReducer,
 });
 
 store.subscribe(() => {
   console.log("update state", store.getState());
-  localStorage.setItem('photos', JSON.stringify(store.getState().photo));
-})
+  localStorage.setItem("photos", JSON.stringify(store.getState().photo));
+});
 
 export default store;

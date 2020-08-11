@@ -11,7 +11,13 @@ MainPage.propTypes = {};
 
 function MainPage(props) {
   const photos = useSelector((state) => state.photo);
-  console.log("list of photos", photos);
+  const auth = useSelector((state) => state.auth);
+
+  console.log("auth:", auth.user.name);
+  let title = "Your awesome photos 😍";
+  if (auth.isSignIn) {
+    title = `Hi ${auth.user["name"]} welcome back 🥰`;
+  }
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -31,7 +37,7 @@ function MainPage(props) {
 
   return (
     <div className="photo-main">
-      <Banner title="Your awesome photos 😍" backgroundUrl={images.PINK_BG} />
+      <Banner title={title} backgroundUrl={images.PINK_BG} />
 
       <Container className="text-center pt-5">
         <Link to="/photos/add">add new photo</Link>

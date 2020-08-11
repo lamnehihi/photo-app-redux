@@ -13,9 +13,7 @@ function Header(props) {
           <Col xs="auto">
             <a
               className="header__link header__title"
-              href="https://www.facebook.com/profile.php?id=100010291146187"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/photos"
             >
               Photo Base
             </a>
@@ -25,10 +23,10 @@ function Header(props) {
             <NavLink
               exact
               className="header__link"
-              to="/photos"
+              to="/sign-in"
               activeClassName="header__link--active"
             >
-              Redux Project
+              Sign In
             </NavLink>
           </Col>
         </Row>

@@ -89,8 +89,6 @@ const randomId = () => {
   return Math.trunc(Math.random() * 20000000);
 };
 
-console.log("Photos is : ", initialPhotos);
-
 const photo = createSlice({
   name: "photo",
   initialState: initialPhotos,
